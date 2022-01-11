@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class PassengerMenu {
     private Scanner reader = new Scanner(System.in);
     
-    public void menuFligth(){
+    public void menuPassenger(){
         boolean menu = false;
         int choose = 0;
         
@@ -26,44 +26,38 @@ public class PassengerMenu {
                  + "4- Exit.");
              choose = reader.nextInt();
 
-             if(choose>0 && choose <6){
-                menu = true;
+             switch (choose) {
+                case 1: 
+                    fligthConsult();
+                     break;
+                case 2:
+                    fligthPassengerInfo();
+                    break;
+                case 3:
+                  changeSmoking();
+                    break;
+                case 4:
+                    menu = true;
+                    break;
+                 default:
+                     System.out.println("Wrong option.");
              }
-        }  
-        switch (choose) {
-            case 1: 
-                fligthConsult();
-                 break;
-            case 2:
-                flithPassengerInfo();
-                break;
-            case 3:
-               addFligth();
-                break;
-            case 4:
-                removeFlith();
-                break;
-            case 5: 
-                noSmoking();
-                break;
-             default:
-                 System.out.println("Wrong number.");
-         }
+        }
     }
     
     private void fligthConsult(){
         
     }
-    private void flithPassengerInfo(){
+    private void fligthPassengerInfo(){
         
     }
-    private void addFligth(){
+    private void changeSmoking(){
         
     }
-    private void removeFlith(){
+    private void removePassenger(){
         
     }
-    private void noSmoking(){
+    private void addPassenger(){
         
     }
 }

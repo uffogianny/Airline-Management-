@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package airlinemanagement;
 
+import fligth.FligthMenu;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import passengers.PassengerMenu;
 
 /**
  *
@@ -21,8 +18,10 @@ public class AirlineManager {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args){
         Scanner reader = new Scanner(System.in) ;
+        PassengerMenu pMenu = new PassengerMenu();
+        FligthMenu fMenu = new FligthMenu();
         
        int choose = 0;
        boolean menu = false;
@@ -35,13 +34,30 @@ public class AirlineManager {
                 + "4- Exit.");
             choose = reader.nextInt();
             
-            if(choose>0 && choose <4){
-               menu = true;
+            switch (choose) {
+            case 1: 
+                pMenu.menuPassenger();
+                 break;
+            case 2:
+                fMenu.menuFligth();
+                break;
+            case 3:
                
-            }
-       }
-       
-       try {
+                break;
+            case 4:
+                menu = true;
+                break;
+            
+             default:
+                 System.out.println("Wrong number.");
+         }
+            
+       }     
+    }    
+}
+
+
+/* try {
             String controlador = "org.sqlite.JDBC";
             String cadenaconex = "jdbc:sqlite:airline_data.sqlite.sql";
  
@@ -49,8 +65,8 @@ public class AirlineManager {
             Connection cn;
             cn = DriverManager.getConnection(cadenaconex);
             Statement st =(Statement) cn.createStatement();
-            String sql1 ="SELECT * FROM Clientes";
-            ResultSet rs= st.executeQuery(sql1);
+            String sql1 ="SELECT * FROM Pasajeros";
+            ResultSet rs= st.executeQueery(sql1);
  
             while (rs.next()){
                 System.out.print("Nombre: "+rs.getString("Nombre"));
@@ -61,7 +77,4 @@ public class AirlineManager {
             System.out.println("Controlador no válido");
         } catch (SQLException ex) {
              ex.printStackTrace();
-        }
-       
-    }    
-}
+        }*/
