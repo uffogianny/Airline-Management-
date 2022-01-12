@@ -27,7 +27,7 @@ public class AirlineManager {
        boolean menu = false;
              
        while(menu == false){
-           System.out.println("-----Airline Manamegement Menu-----\n"
+           System.out.println("-----Airline Management Menu-----\n"
                 + "1- Database tables consult.\n"
                 + "2- Passengers.\n"
                 + "3- Fligth.\n"

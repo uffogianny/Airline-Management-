@@ -19,7 +19,7 @@ public class FligthMenu {
         int choose = 0;
         
         while(menu == false){
-            System.out.println("-----Fligth Manamegement Menu-----\n"
+            System.out.println("-----Fligth Management Menu-----\n"
                  + "1- Fligths Database Consult.\n"
                  + "2- Add a fligth."
                  + "3- Remove a fligth."

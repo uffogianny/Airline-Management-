@@ -19,7 +19,7 @@ public class PassengerMenu {
         int choose = 0;
         
         while(menu == false){
-            System.out.println("-----Passengers Manamegement Menu-----\n"
+            System.out.println("-----Passengers Management Menu-----\n"
                  + "1- Passengers Database Consult.\n"
                  + "2- Fligth Passenger Info.\n"
                  + "3- Change Smoking type Passenger.\n"
