@@ -23,6 +23,7 @@ public class AirlineManager {
         PassengerMenu pMenu = new PassengerMenu();
         FligthMenu fMenu = new FligthMenu();
         
+        
        int choose = 0;
        boolean menu = false;
              
@@ -36,13 +37,14 @@ public class AirlineManager {
             
             switch (choose) {
             case 1: 
-                pMenu.menuPassenger();
+               
                  break;
             case 2:
-                fMenu.menuFligth();
+                pMenu.menuPassenger();
+                
                 break;
             case 3:
-               
+                fMenu.menuFligth();
                 break;
             case 4:
                 menu = true;

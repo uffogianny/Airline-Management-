@@ -14,11 +14,12 @@ public class Passenger {
     private String id, name, lastName, phoneNumber, fligths;
     private boolean smoker = false;
     
-    public Passenger(String id, String name, String lastName, String phoneNumber){
+    public Passenger(String id, String name, String lastName, String phoneNumber, String cod_vuelo){
         this.id = id;
         this.name= name;
         this.lastName = lastName;
         this.phoneNumber= phoneNumber;
+        this.fligths = cod_vuelo + ","+ this.fligths;
         
     }
 
