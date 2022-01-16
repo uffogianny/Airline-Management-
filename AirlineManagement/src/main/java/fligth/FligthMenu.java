@@ -1,10 +1,12 @@
 
 package fligth;
 
+import connector.Connect;
 import java.util.Scanner;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 /**
  *
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class FligthMenu {
     private Scanner reader = new Scanner(System.in);
+    private Connect conn = new Connect();
     
     public void menuFligth(){
         boolean menu = false;
@@ -58,7 +61,16 @@ public class FligthMenu {
     }
     
     private void fligthConsult(){
-        
+        try (PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT vuelos FROM AirlineDatabase")) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next())
+              System.out.println (rs.getString("COD_VUELO"));
+
+        } catch (SQLException sqle) { 
+          System.out.println("Error en la ejecución:" 
+            + sqle.getErrorCode() + " " + sqle.getMessage());    
+        }
         
     }
     private void fligthPassengerInfo(){
@@ -74,6 +86,7 @@ public class FligthMenu {
         
     }
     private void consultRoutes(){
+        
         
     }
 }
