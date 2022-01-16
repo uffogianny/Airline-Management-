@@ -69,6 +69,22 @@ public class PassengerMenu {
 
         }
     }    
+    public static void datosPasajerosUpdate(String query) throws SQLException {
+        String ID = null, Cod_vuelo = null, nombre = null, apellido = null, tipo_plaza = null, fumador = null;
+        int telefono = 0;
+        ResultSet rs = conn.getData(query);
+        while (rs.next()) {
+            ID = rs.getString("ID");
+            Cod_vuelo = rs.getString("COD_VUELO");
+            nombre = rs.getString("NOMBRE");
+            apellido = rs.getString("APELLIDO");
+            tipo_plaza = rs.getString("TIPO_PLAZA");
+            fumador = rs.getString("FUMADOR");
+            telefono = rs.getInt("TELEFONO");
+            System.out.println("\nID " + ID + "\ncod_vuelo " + Cod_vuelo + "\nnombre " + nombre + " \napellido " + apellido + " \ntipo_plaza " + tipo_plaza + "\nfumador " + fumador + " \ntelefono " + telefono + "\n");
+
+        }
+    }
     public void passengersConsult(){
         System.out.println("Se estan consultando los pasajeros ...");
         try {

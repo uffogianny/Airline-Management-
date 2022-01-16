@@ -5,6 +5,7 @@ import connector.Connect;
 import java.sql.ResultSet;
 import java.util.Scanner;
 import java.sql.SQLException;
+import java.sql.Statement;
 import passengers.PassengerMenu;
 
 /**
@@ -79,8 +80,11 @@ public class FligthMenu {
             System.out.println("\ncod_vuelo " + cod_vuelo + "\nhora_salida " + hora_salida + "\ndestino " + destino + " \nprocedencia " + procedencia + " \nplazas_fumador " + plazas_fumador + "\nplazas_no_fumador " + plazas_no_fumador + " \nplazas_primera " + plazas_primera+ "\nPlazas_Turista"+plazas_turista+"\n");
         }
     }
-     
-    
+     public static void datosVuelosUpdate(String query) throws SQLException {
+        Statement stmt;        
+        stmt= Connect.getStatement();
+        stmt.executeUpdate(query);
+    }
     public void fligthConsult(){
         System.out.println("Se estan consultando los vuelos ...");
         try {
@@ -128,7 +132,29 @@ public class FligthMenu {
         }
     }
     private void noSmoking(){
-        
+        String opcion="";
+        do {
+            try {
+                System.out.println("Se convertiran todos los vuelos de fumadores a no fumadores .¿Desea continuar (S/N)? ");
+            }catch (Exception e){
+                System.out.println(e);
+            }
+            opcion=reader.next();
+
+
+            System.out.println(opcion);
+        }while(!opcion.equalsIgnoreCase("N") && !opcion.equalsIgnoreCase("S"));
+        if (opcion=="N") {
+            System.out.println("Se ha cancelado  la conversion");
+        } else{
+            try{
+                PassengerMenu.datosPasajerosUpdate("update pasajeros set PLAZA_FUMADOR='NO'");
+                datosVuelosUpdate("update vuelos set PLAZA_NO_FUMADOR=SUM(PLAZA_NO_FUMADOR,PLAZA_FUMADOR),set PLAZA_FUMADOR=0");
+
+            }catch(NullPointerException | SQLException npe) {
+                System.out.println(npe);
+            }
+        }
     }
     private void consultRoutes(){
         
