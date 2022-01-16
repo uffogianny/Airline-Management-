@@ -1,6 +1,8 @@
 package com.company;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 public class Main {
 
@@ -21,13 +23,13 @@ public class Main {
                     pasajerosVueloConcreto(sc);
                     break;
                 case 4:
-                    nuevoVuelo();
+                    nuevoVuelo(sc);
                     break;
                 case 5:
                     borrarAnteriorVuelo(sc);
                     break;
                 case 6:
-                    convertirVuelo();
+                    convertirVuelo(sc);
                     break;
                 default:
                     fin();
@@ -79,10 +81,112 @@ public class Main {
             System.out.println(npe);
         }
     }
-    static void nuevoVuelo(){
+    static void nuevoVuelo(Scanner sc){
+
+        int mes=0, anho=0,dia=0,hora=0,minutos=0,plazas_fumador=0,plazas_no_fumador=0,plazas_primera=0,plazas_turista=0,maximo_pasajeros=400;
+        String cod_vuelo=null,destino=null,procedencia=null;
+        boolean fechaC=false;
+
+        LocalDate current_date = LocalDate.now();
+        //getting the current year from the current_date
+        int year = current_date.getYear();
+        do {
+            try {
+                System.out.println("introduce el codigo del vuelo");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            cod_vuelo= sc.next();
+        } while (cod_vuelo.length()>6);
+
+       do{
+            do {
+                try {
+                    System.out.println("introduce el dia del vuelo");
+                } catch (NumberFormatException nfe) {
+                    System.out.println(nfe);
+                }
+                dia = sc.nextInt();
+            } while (dia>31);
+
+            do {
+                try {
+                    System.out.println("introduce mes del vuelo");
+                } catch (NumberFormatException nfe) {
+                    System.out.println(nfe);
+                }
+                mes = sc.nextInt();
+            } while (mes>12);
+            do {
+                try {
+                    System.out.println("introduce año del vuelo");
+                } catch (NumberFormatException nfe) {
+                    System.out.println(nfe);
+                }
+                anho = sc.nextInt();
+            } while (anho<year);
+       } while(!DB.validation(dia, mes, anho));
+
+        do {
+            try {
+                System.out.println("introduce los minutos del vuelo");
+            } catch (NumberFormatException nfe) {
+                System.out.println(nfe);
+            }
+            minutos= sc.nextInt();
+        } while (minutos>60);
+        do {
+            try {
+                System.out.println("introduce la hora del vuelo");
+            } catch (NumberFormatException nfe) {
+                System.out.println(nfe);
+            }
+            hora = sc.nextInt();
+        } while (hora>24);
+        do {
+            try {
+                System.out.println("introduce destino del vuelo");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            destino=sc.next();
+        } while (destino.length()>15);
+
+        do {
+            try {
+                System.out.println("introduce la procedencia del vuelo");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            procedencia= sc.next();
+        } while (procedencia.length()>15);
+
+        do {
+            try {
+                System.out.println("introduce la cantidad de pasajeros fumadores");
+            } catch (NumberFormatException nfe) {
+                System.out.println(nfe);
+            }
+            plazas_fumador= sc.nextInt();
+        } while (plazas_fumador>400);
+
+        plazas_no_fumador=maximo_pasajeros-plazas_fumador;
+        do {
+            try {
+                System.out.println("introduce las plazas de primera clase");
+            } catch (NumberFormatException nfe) {
+                System.out.println(nfe);
+            }
+            plazas_primera = sc.nextInt();
+        } while (mes>400);
+
+        plazas_turista=maximo_pasajeros-plazas_primera;
+
+
 
 
     }
+
     static void borrarAnteriorVuelo(Scanner sc){
         String vuelo;
         do {
