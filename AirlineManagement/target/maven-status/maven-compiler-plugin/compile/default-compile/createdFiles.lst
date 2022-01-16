@@ -1,1 +1,7 @@
+database\DataModel.class
 connector\Connect.class
+connector\ConnectionFrame$2.class
+database\FligthData.class
+fligth\DataValidation.class
+connector\ConnectionFrame.class
+connector\ConnectionFrame$1.class

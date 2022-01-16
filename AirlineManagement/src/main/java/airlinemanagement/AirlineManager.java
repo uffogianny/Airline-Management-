@@ -1,28 +1,20 @@
 package airlinemanagement;
 
+import connector.Connect;
 import fligth.FligthMenu;
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 import passengers.PassengerMenu;
-
 /**
  *
  * @author uffog
  */
 public class AirlineManager {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args){
         Scanner reader = new Scanner(System.in) ;
         PassengerMenu pMenu = new PassengerMenu();
         FligthMenu fMenu = new FligthMenu();
-        
+        Connect.database();
         
        int choose = 0;
        boolean menu = false;
@@ -37,7 +29,7 @@ public class AirlineManager {
             
             switch (choose) {
             case 1: 
-               
+               dbConsult(fMenu, pMenu);
                  break;
             case 2:
                 pMenu.menuPassenger();
@@ -52,31 +44,11 @@ public class AirlineManager {
             
              default:
                  System.out.println("Wrong number.");
-         }
-            
+         }            
        }     
-    }    
+    }  
+    private static void dbConsult(FligthMenu fMenu, PassengerMenu pMenu){ 
+        fMenu.fligthConsult();
+        pMenu.passengersConsult();
+    }
 }
-
-
-/* try {
-            String controlador = "org.sqlite.JDBC";
-            String cadenaconex = "jdbc:sqlite:airline_data.sqlite.sql";
- 
-            Class.forName(controlador);
-            Connection cn;
-            cn = DriverManager.getConnection(cadenaconex);
-            Statement st =(Statement) cn.createStatement();
-            String sql1 ="SELECT * FROM Pasajeros";
-            ResultSet rs= st.executeQueery(sql1);
- 
-            while (rs.next()){
-                System.out.print("Nombre: "+rs.getString("Nombre"));
-                System.out.println(" Apellidos: "+rs.getString("Apellidos"));
-            }
- 
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Controlador no válido");
-        } catch (SQLException ex) {
-             ex.printStackTrace();
-        }*/

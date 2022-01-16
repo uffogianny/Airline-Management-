@@ -27,7 +27,7 @@ public class Main {
                     borrarAnteriorVuelo(sc);
                     break;
                 case 6:
-                    convertirVuelo();
+                    convertirVuelo(sc);
                     break;
                 default:
                     fin();
